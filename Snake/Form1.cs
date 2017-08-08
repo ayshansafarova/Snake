@@ -7,16 +7,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Media;
 
 namespace Snake
 {    public partial class Form1 : Form
     {
+        //Sound snd;
         Animal head;
         Food fruit;
         Graphics g;
         int dirX = 0, dirY = 0;
         Boolean isX = true, isY = true;
-        int score = 0;
+        public int score = 0;
         public Form1()
         {
             InitializeComponent();
@@ -44,6 +46,9 @@ namespace Snake
                 myLabel2.Text = score.ToString();
             }
         }
+        /// <summary>
+        /// divarla toqqusduqda oyunun bitmeyini icra etsin.
+        /// </summary>
         public void intersectionWall()
         {
             if (head.getX() < 0 || head.getX() > 928 || head.getY() < 0 || head.getY() > 485)
@@ -51,8 +56,13 @@ namespace Snake
                 endOfGame();
             }
         }
+        /// <summary>
+        /// oyun biterse, ozu refresh elesin her sheyi.
+        /// </summary>
         public void endOfGame()
         {
+            SoundPlayer snd = new SoundPlayer(@"C:\Users\USER\Documents\Visual Studio 2017\Projects\Snake\Snake\sound\over.wav");
+            snd.Play();
             score = 0;
             myLabel2.Text = "0";
             isX = true;
@@ -61,8 +71,11 @@ namespace Snake
             dirY = 0;
             head = new Animal(10, 10);
             fruit = new Food();
-            MessageBox.Show("You lost the game!");
+            MessageBox.Show("GAME OVER!");  
         }
+        /// <summary>
+        /// quyruguyla toqqussa oyun bitsin
+        /// </summary>
         public void intersectionTail()
         {
             Animal temp;
