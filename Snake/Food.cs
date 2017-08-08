@@ -16,7 +16,7 @@ namespace Snake
         }
         public void draw(Graphics g)
         {
-            g.FillRectangle(new SolidBrush(Color.Red), this.x, this.y, this.width, this.width);
+            g.FillRectangle(new SolidBrush(Color.Magenta), this.x, this.y, this.width, this.width);
         }
         /// <summary>
         /// bu her defe qidanin yerini "randomise" edir. Bu zaman qida her defesinde muxtelif yerlerde cixir.

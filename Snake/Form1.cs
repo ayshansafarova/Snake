@@ -20,7 +20,6 @@ namespace Snake
         public Form1()
         {
             InitializeComponent();
-            MessageBox.Show("Minimum Score is 50. Start to play!");
             head = new Animal(10, 10);
             fruit = new Food();
             g = myPicBox.CreateGraphics();
@@ -29,8 +28,9 @@ namespace Snake
         {
             head.setCoordinate(head.getX() + dirX, head.getY() + dirY);
         }
-        private void timer1_Tick(object sender, EventArgs e)
+        private void timer1_Tick_1(object sender, EventArgs e)
         {
+            g.Clear(Color.LightGreen);
             head.draw(g);
             fruit.draw(g);
             move();
@@ -46,7 +46,7 @@ namespace Snake
         }
         public void intersectionWall()
         {
-            if (head.getX() < 0 || head.getX() > 770 || head.getY() < 0 || head.getY() > 380)
+            if (head.getX() < 0 || head.getX() > 928 || head.getY() < 0 || head.getY() > 485)
             {
                 endOfGame();
             }
@@ -70,7 +70,7 @@ namespace Snake
             {
                 temp = head.getTail().getTail();
             }
-            catch (Exception error)
+            catch (Exception er)
             {
                 temp = null;
             }
@@ -86,8 +86,9 @@ namespace Snake
                 }
             }
         }
-        private void Form1_KeyUp(object sender, KeyEventArgs e)
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
+            if(isX)
             {
                 if (e.KeyCode == Keys.Up)
                 {
